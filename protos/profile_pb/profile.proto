@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+option go_package = "./profile_pb";
+
+message ProfileInfo {
+  string profile_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string phone_number = 5;
+  string profile_img = 6;
+
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message CreateProfileInfoRequest {
+  ProfileInfo profile = 1;
+}
+
+message CreateProfileInfoResponse {
+  ProfileInfo profile = 1;
+}
+
+message UpdateProfileInfoRequest {
+  ProfileInfo profile = 1;
+}
+
+
+message UpdateProfileInfoResponse {
+  ProfileInfo profile = 1;
+}
+
+message GetProfileInfoRequest {
+  string profile_info_id = 1;
+}
+
+message GetProfileInfoResponse {
+  ProfileInfo profile = 1;
+}
+
+message DeleteProfileInfoRequest {
+  string profile_info_id = 1;
+}
+
+message DeleteProfileInfoResponse {
+  string profile_info_id = 1;
+}
+
+message ExtraInfo {
+  string extra_info_id = 1;
+  string university = 2;
+  string about_me = 3;
+  string created_at = 4;
+  string updated_at = 5;
+}
+
+
+service ProfileService {
+  // CRUD Operation for ProfileInfo
+  rpc CreateProfileInfo(CreateProfileInfoRequest) returns (CreateProfileInfoResponse);
+  rpc UpdateProfileInfo(UpdateProfileInfoRequest) returns (UpdateProfileInfoResponse);
+  rpc DeleteProfileInfo(DeleteProfileInfoRequest) returns (DeleteProfileInfoResponse);
+  rpc GetProfileInfo(GetProfileInfoRequest) returns (GetProfileInfoResponse);
+
+
+}
