@@ -13,14 +13,6 @@ type AccountServer struct {
 	user_pb.UnimplementedUserServiceServer
 }
 
-type User struct {
-	id        string
-	username  string
-	password  string
-	createdAt string
-	updatedAt string
-}
-
 // Dummy db
 var users []*user_pb.CreateUserRequest
 
