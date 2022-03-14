@@ -5,10 +5,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-
+    volumes:
+      - .:/go/src/app
     ports:
       - "50051:50051"
+    command: nodemon --exec go run main.go --signal SIGTERM
     restart: unless-stopped
+    depends_on:
+      - mysql_db
+
+
   mysql_db:
     image: mysql:latest
     restart: always

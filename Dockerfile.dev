@@ -1,6 +1,11 @@
 FROM golang:1.17
 
 RUN apt-get update && apt-get upgrade -y
+
+RUN apt-get install nodejs -y
+RUN apt-get install npm -y
+
+RUN npm -g i nodemon -y
 # && \
 #    apt-get install git openssh-server -y
 
@@ -20,6 +25,4 @@ RUN go install -v ./...
 
 COPY . .
 
-RUN go build -o main .
-
-CMD ["./main"]
+#CMD ["./main"]
