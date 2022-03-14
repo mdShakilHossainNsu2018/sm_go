@@ -10,6 +10,7 @@ type User struct {
 	Id        string
 	Username  string
 	Password  string
+	Role      string
 	CreatedAt string
 	UpdatedAt string
 }
@@ -24,6 +25,7 @@ func NewUser(username string, password string, role string) (*user_pb.User, erro
 	user := &user_pb.User{
 		Username: username,
 		Password: string(hashedPassword),
+		Role:     role,
 	}
 	return user, nil
 }
@@ -39,5 +41,6 @@ func (user *User) Clone() *User {
 	return &User{
 		Username: user.Username,
 		Password: user.Password,
+		Role:     user.Role,
 	}
 }

@@ -9,12 +9,13 @@ services:
     ports:
       - "50051:50051"
     restart: unless-stopped
-  postgres_db:
-    image: postgres:14.1-alpine
+  mysql_db:
+    image: mysql:latest
     restart: always
     ports:
-      - "5432:5432"
+      - "3306:3306"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: sm_db
-      POSTGRES_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: password
+      MYSQL_USER: mysql_user
+      MYSQL_DATABASE: sm_db
