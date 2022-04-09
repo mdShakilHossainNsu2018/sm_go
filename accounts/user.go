@@ -10,13 +10,14 @@ type User struct {
 	Id        string
 	Username  string
 	Password  string
-	Role      string
+	Email     string
+	Phone     string
 	CreatedAt string
 	UpdatedAt string
 }
 
 // NewUser returns a new user
-func NewUser(username string, password string, role string) (*user_pb.User, error) {
+func NewUser(username string, password string, email string, phone string) (*user_pb.User, error) {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		return nil, fmt.Errorf("cannot hash password: %w", err)
@@ -25,7 +26,8 @@ func NewUser(username string, password string, role string) (*user_pb.User, erro
 	user := &user_pb.User{
 		Username: username,
 		Password: string(hashedPassword),
-		Role:     role,
+		Email:    email,
+		Phone:    phone,
 	}
 	return user, nil
 }
@@ -41,6 +43,7 @@ func (user *User) Clone() *User {
 	return &User{
 		Username: user.Username,
 		Password: user.Password,
-		Role:     user.Role,
+		Email:    user.Email,
+		Phone:    user.Phone,
 	}
 }
